@@ -1,0 +1,25 @@
+schema {
+    query: Query
+    mutation: Mutation
+    #    subscription: Subscription
+}
+
+type Employee {
+    id : ID!
+    firstName :String
+    lastName :String
+    address:String
+}
+
+#scalar Long
+type Query{
+    findById(id:Int) : Employee
+    findAll:[Employee]
+}
+
+type Mutation{
+    update(id:Int,firstName:String,lastName:String,address:String):Employee
+    deleteById(id:Int):Employee
+    save:Employee
+}
+
