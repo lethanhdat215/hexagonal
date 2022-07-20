@@ -1,8 +1,7 @@
 package com.example.demo.infrastructure.adapter;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.example.demo.domain.model.Employee;
-import com.example.demo.domain.repository.EmployeeRepository;
+import com.example.demo.domain.port.out.EmployeeDbPort;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -13,7 +12,7 @@ import java.util.List;
 
 @Component
 @Primary
-public class PostgresDbEmployeeRepository implements EmployeeRepository, GraphQLQueryResolver {
+public class PostgresDbEmployeeDbAdapter implements EmployeeDbPort {
     @Autowired
     private com.example.demo.infrastructure.repository.EmployeeRepository employeeRepository;
     ModelMapper modelMapper = new ModelMapper();

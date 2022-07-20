@@ -1,12 +1,11 @@
-package com.example.demo.domain.service;
+package com.example.demo.domain.port.out;
 
 import com.example.demo.domain.model.Employee;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public interface EmployeeService {
+
+public interface EmployeeDbPort {
     Employee findById(Long id);
 
     Employee save(Employee employee);
