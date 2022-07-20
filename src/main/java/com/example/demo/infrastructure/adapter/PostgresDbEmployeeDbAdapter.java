@@ -19,18 +19,15 @@ public class PostgresDbEmployeeDbAdapter implements EmployeeDbPort {
 
     @Override
     public Employee findById(Long id) {
-        com.example.demo.infrastructure.entity.Employee employeeI = employeeRepository.findById(id).get();
-        Employee employeeD = modelMapper.map(employeeI, Employee.class);
-        if (employeeD != null) return employeeD;
-        return null;
+        com.example.demo.infrastructure.entity.Employee employeeI = employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("id không tồn tại"));
+        return  modelMapper.map(employeeI, Employee.class);
     }
 
     @Override
     public Employee save(Employee employee) {
         com.example.demo.infrastructure.entity.Employee employeeI = modelMapper.map(employee, com.example.demo.infrastructure.entity.Employee.class);
         employeeI = employeeRepository.save(employeeI);
-        Employee employeeD = modelMapper.map(employeeI,Employee.class);
-        return employeeD;
+        return modelMapper.map(employeeI,Employee.class);
     }
 
     @Override
@@ -56,7 +53,6 @@ public class PostgresDbEmployeeDbAdapter implements EmployeeDbPort {
         employeeI.setLastName(employee.getLastName());
         employeeI.setAddress(employee.getAddress());
         employeeRepository.save(employeeI);
-        Employee employeeD = modelMapper.map(employeeI, Employee.class);
-        return employeeD;
+        return modelMapper.map(employeeI, Employee.class);
     }
 }
